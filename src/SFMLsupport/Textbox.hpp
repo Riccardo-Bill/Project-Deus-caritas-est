@@ -20,7 +20,7 @@ public:
 
     Textbox(sf::Vector2f size = sf::Vector2f(450.f, 50.f), 
             sf::Color fillColor = sf::Color(0, 0, 0),
-            sf::Color outColor = sf::Color(sf::Color(255, 255, 255)),
+            sf::Color outColor = sf::Color(255, 255, 255),
             float outThick = 2.f,
             sf::Vector2f pos = sf::Vector2f(100.f, 100.f),
             std::string font = "arial.ttf",
