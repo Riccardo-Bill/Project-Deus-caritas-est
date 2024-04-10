@@ -13,7 +13,7 @@ Textbox::Textbox(sf::Vector2f size, sf::Color fillColor, sf::Color outColor,
 
     this->setFont(font);
     this->setTextColor(textColor, fillColor);
-    this->text_.setString("Hi, I am "/*"Fix your god damm code!"*/);   //default text
+    this->text_.setString("Fix your god damm code!");   //default text
     this->text_.setPosition(box_.getPosition());
 
     this->selected = false;
@@ -29,13 +29,16 @@ std::string const Textbox::getText() { return this->text_.getString(); }
 
 void Textbox::setText(std::string const& text) { this->text_.setString(text); }
 
-void Textbox::setFont(std::string const& text) {
+void Textbox::setFont(std::string const& font) {
     try
     {
-        if(!font_.loadFromFile("fonts/" + text)){
-            throw(std::runtime_error("Failed to load font"));
+        if (auto it = font_.find(font); it == font_.cend()) { // Font was not created before.
+            auto& tmp = font_[font]; // this access will create a Font object and automatically store it in the map
+            if(!tmp.loadFromFile(font)){
+                throw(std::runtime_error("Failed to load font"));
+            }
         }
-        text_.setFont(font_);
+        text_.setFont(font_[font]);
     }
     catch(const std::exception& e)
     {

@@ -2,6 +2,7 @@
 #define TEXTBOX_HPP
 
 #include <SFML/Graphics.hpp>
+#include <map>
 
 /// @brief Class to handle text in SFML
 class Textbox
@@ -12,7 +13,7 @@ private:
 
     sf::Text text_;
 
-    sf::Font font_;
+    std::map<std::string, sf::Font> font_;
 
     bool selected;
 
@@ -23,7 +24,7 @@ public:
             sf::Color outColor = sf::Color(255, 255, 255),
             float outThick = 2.f,
             sf::Vector2f pos = sf::Vector2f(100.f, 100.f),
-            std::string font = "arial.ttf",
+            std::string font = "fonts/arial.ttf",
             sf::Color textColor = sf::Color(255, 255, 255));
 
     ~Textbox();
@@ -35,7 +36,7 @@ public:
     //simple getter and setters for text
     std::string const getText();
     void setText(std::string const& text);
-    void setFont(std::string const& text);
+    void setFont(std::string const& font);
     void setTextColor(sf::Color fillColor, sf::Color outlineColor);
     void setTextColor(sf::Color fillColor);
 
