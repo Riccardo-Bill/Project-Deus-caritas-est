@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include "scenes/Menu.hpp"
 
@@ -69,9 +70,7 @@ int main(){
         window.display();
     }
 
-    
-
-    printf("Testing at the end!\n");
+    std::cout << "Testing at the end!" << std::endl;
 
     return EXIT_SUCCESS;
 }

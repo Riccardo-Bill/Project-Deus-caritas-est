@@ -13,7 +13,9 @@ private:
 
     sf::Text text_;
 
-    std::map<std::string, sf::Font> font_;
+    sf::Font font_;
+
+    //std::map<std::string, sf::Font> font_;
 
     bool selected;
 
@@ -24,8 +26,8 @@ public:
             sf::Color outColor = sf::Color(255, 255, 255),
             float outThick = 2.f,
             sf::Vector2f pos = sf::Vector2f(100.f, 100.f),
-            std::string font = "fonts/arial.ttf",
-            sf::Color textColor = sf::Color(255, 255, 255));
+            std::string font = "fonts/SuperBoys-vmW67.ttf",
+            sf::Color textColor = sf::Color::White);
 
     ~Textbox();
 
