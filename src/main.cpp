@@ -3,6 +3,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "scenes/Menu.hpp"
+#include "SFMLsupport/Fontbox.hpp"
+
+Fontbox globFonts;
 
 int main(){
 

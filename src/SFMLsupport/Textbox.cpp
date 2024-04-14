@@ -1,4 +1,5 @@
 #include "Textbox.hpp"
+#include "Fontbox.hpp"
 #include <iostream>
 #include <stdexcept>
 
@@ -31,24 +32,7 @@ std::string const Textbox::getText() { return this->text_.getString(); }
 void Textbox::setText(std::string const& text) { this->text_.setString(text); }
 
 void Textbox::setFont(std::string const& font) {
-    try
-    {
-        /*if (auto it = font_.find(font); it == font_.cend()) { // Font was not created before.
-            auto& tmp = font_[font]; // this access will create a Font object and automatically store it in the map
-            if(!tmp.loadFromFile(font)){
-                throw(std::runtime_error("Failed to load font"));
-            }
-        }
-        text_.setFont(font_[font]);*/
-        if(!this->font_.loadFromFile(font)){
-            throw(std::runtime_error("Failed to load font"));
-        }
-        text_.setFont(font_);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+    text_.setFont(globFonts.getFont(font));
 }
 
 void Textbox::setTextColor(sf::Color fillColor, sf::Color outlineColor) {
