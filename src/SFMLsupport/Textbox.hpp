@@ -26,7 +26,7 @@ public:
             sf::Color outColor = sf::Color(255, 255, 255),
             float outThick = 2.f,
             sf::Vector2f pos = sf::Vector2f(100.f, 100.f),
-            std::string font = "fonts/SuperBoys-vmW67.ttf",
+            std::string font = "fonts/arial.ttf",
             sf::Color textColor = sf::Color::White);
 
     ~Textbox();

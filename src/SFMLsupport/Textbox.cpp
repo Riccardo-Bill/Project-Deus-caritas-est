@@ -15,7 +15,7 @@ Textbox::Textbox(sf::Vector2f size, sf::Color fillColor, sf::Color outColor,
     this->setFont(font);
     this->setTextColor(textColor, fillColor);
     this->text_.setString("Fix your god damm code!\n");   //default text
-    this->text_.setCharacterSize(100);
+    this->text_.setCharacterSize(30);
     this->text_.setPosition(box_.getPosition());
 
     this->selected = false;
