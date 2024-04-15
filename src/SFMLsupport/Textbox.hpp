@@ -44,12 +44,12 @@ public:
 
     void addText(std::string const& text);
 
-    void checkSelect(sf::Event event);
+    void checkSelect(sf::Event& event);
 
 
     void draw(sf::RenderWindow& window);
 
-    void input(sf::Event event);
+    void input(sf::Event& event);
 
     /// @brief Update all values of box_
     void update(sf::Clock& clock);

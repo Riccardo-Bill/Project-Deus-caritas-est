@@ -19,7 +19,7 @@ Menu::~Menu()
  * 
  * @param event sfml event from main loop 
  */
-void Menu::input(sf::Event event) {
+void Menu::input(sf::Event& event) {
     for (size_t i = 0; i < this->boxes_.size(); i++)
     {
         this->boxes_[i]->input(event);

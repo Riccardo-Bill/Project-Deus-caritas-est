@@ -53,14 +53,14 @@ void Textbox::addText(std::string const& text) {
     }
 }
 
-void Textbox::checkSelect(sf::Event event)
+void Textbox::checkSelect(sf::Event& event)
 {
-    if (box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+    if (box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y) && this->selected == false)
     {
         this->selected = true;
         this->addText("_");
     }
-    else
+    else if (!(box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) && this->selected == true)
     {
         this->selected = false;
         std::string now = this->text_.getString();
@@ -69,8 +69,8 @@ void Textbox::checkSelect(sf::Event event)
     }
 }
 
-void Textbox::input(sf::Event event) {
-    if (event.type == sf::Event::MouseLeft){ //if mouse press check for selecting of this box
+void Textbox::input(sf::Event& event) {
+    if (event.type == sf::Event::MouseButtonPressed){ //if mouse press check for selecting of this box
         this->checkSelect(event);
     }
     else if (this->selected && event.type == sf::Event::TextEntered){ //if this box is selected AND text is entered add it to this box

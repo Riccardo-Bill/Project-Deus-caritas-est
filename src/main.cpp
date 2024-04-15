@@ -40,7 +40,8 @@ int main(){
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
-            else {
+
+            if (event.type == sf::Event::TextEntered || event.type == sf::Event::MouseButtonPressed){
                 mainMenu.input(event);
             }
 /*
