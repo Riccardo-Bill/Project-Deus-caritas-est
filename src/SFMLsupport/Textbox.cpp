@@ -7,6 +7,7 @@ Textbox::Textbox(sf::Vector2f size, sf::Color fillColor, sf::Color outColor,
                 float outThick, sf::Vector2f pos, std::string font, sf::Color textColor)
                 : box_(sf::RectangleShape(size))
 {
+    box_.setSize(size);
     box_.setFillColor(fillColor);
     box_.setOutlineThickness(outThick);                     
     box_.setOutlineColor(outColor);
@@ -14,11 +15,12 @@ Textbox::Textbox(sf::Vector2f size, sf::Color fillColor, sf::Color outColor,
 
     this->setFont(font);
     this->setTextColor(textColor, fillColor);
-    this->text_.setString("Fix your god damm code!\n");   //default text
-    this->text_.setCharacterSize(30);
+    this->text_.setString("Fix your god damm code!");   //default text
+    this->text_.setCharacterSize(25);
     this->text_.setPosition(box_.getPosition());
 
     this->selected = false;
+    this->writable = false;
 }
 
 Textbox::~Textbox() { }
@@ -70,11 +72,18 @@ void Textbox::checkSelect(sf::Event& event)
 }
 
 void Textbox::input(sf::Event& event) {
-    if (event.type == sf::Event::MouseButtonPressed){ //if mouse press check for selecting of this box
-        this->checkSelect(event);
-    }
-    else if (this->selected && event.type == sf::Event::TextEntered){ //if this box is selected AND text is entered add it to this box
-        this->addText(sf::String(event.text.unicode));
+    switch (writable) //check if box is writable or not
+    {
+    case true:
+        if (event.type == sf::Event::MouseButtonPressed){ //if mouse press check for selecting of this box
+            this->checkSelect(event);
+        }
+        else if (this->selected && event.type == sf::Event::TextEntered){ //if this box is selected AND text is entered add it to this box
+            this->addText(sf::String(event.text.unicode));
+        }
+        break;
+    default:
+        break;
     }
 }
 
@@ -103,5 +112,7 @@ void Textbox::update(sf::Clock& clock) {
             this->text_.setString(now + "_");
         }
     } */
+
+    //TODO: Implement resizing?
 
 }

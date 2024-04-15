@@ -15,7 +15,7 @@ private:
 
     sf::Font font_;
 
-    //std::map<std::string, sf::Font> font_;
+    bool writable;
 
     bool selected;
 

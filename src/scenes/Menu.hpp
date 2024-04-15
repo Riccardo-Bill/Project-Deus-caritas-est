@@ -3,6 +3,11 @@
 
 #include "Scene.hpp"
 
+/**
+ * @brief Class for menu, i.e. scenes with only Textbox as interactive objects in them.
+ * 
+ * @details All menus objects start with an return button by default
+ */
 class Menu : public Scene
 {
 private:

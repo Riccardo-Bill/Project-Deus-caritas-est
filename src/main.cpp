@@ -41,6 +41,12 @@ int main(){
             if (event.type == sf::Event::Closed)
                 window.close();
 
+            // resize the window if user resizes it own window
+            if (event.type == sf::Event::Resized) {
+                window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
+            }
+
+            // passing events to mainMenu
             if (event.type == sf::Event::TextEntered || event.type == sf::Event::MouseButtonPressed){
                 mainMenu.input(event);
             }

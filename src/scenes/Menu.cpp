@@ -1,10 +1,15 @@
 #include "Menu.hpp"
 
-Menu::Menu(/* args */)
+Menu::Menu()
     : Scene()
 {
 
-    std::shared_ptr<Textbox> tmp = std::make_shared<Textbox>(Textbox());
+    std::shared_ptr<Textbox> tmp = std::make_shared<Textbox>(Textbox(sf::Vector2f(75.f, 30.f), sf::Color(0, 0, 0),
+                                                                    sf::Color(255, 255, 255), 2.f, sf::Vector2f(250.f, 500.f),
+                                                                    "fonts/arial.ttf", sf::Color::White));
+
+    tmp.get()->setText("Return");
+    tmp.get()->getBox();
 
     this->boxes_.push_back(tmp);
 }
