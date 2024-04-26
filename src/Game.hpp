@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <memory>
 #include "scenes/Menu.hpp"
+#include "SFMLsupport/Textbox.hpp"
 
 /**
  * @brief 

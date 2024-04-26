@@ -9,7 +9,7 @@ Fontbox::Fontbox()
 
 Fontbox::~Fontbox()
 {
-    fonts_.clear();
+    //fonts_.clear();
 }
 
 void Fontbox::loadFont(std::string const& font)

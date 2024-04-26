@@ -8,7 +8,7 @@ Scene::Scene(/* args */)
 
 Scene::~Scene()
 {
-    this->boxes_.clear();
+    //this->boxes_.clear();
 }
 
 std::vector<std::shared_ptr<Textbox>> Scene::getBoxes() {
@@ -38,3 +38,19 @@ void Scene::draw(sf::RenderWindow& window) {
     }
     
 }
+
+void Scene::setBox(int index, std::shared_ptr<Textbox> box) {
+    try
+    {
+        if (index + 1 > boxes_.size()){
+            throw("Out of bounds vector");
+        }
+        else this->boxes_[index] = std::move(box);
+    }
+    catch(const std::string& e)
+    {
+        std::cerr << e << '\n';
+    }
+}
+
+void Scene::addBox(std::shared_ptr<Textbox> box) { this->boxes_.push_back(std::move(box)); }

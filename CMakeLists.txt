@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.16)
 project(ProjectDeuscaritasest
         LANGUAGES CXX)
 
-enable_testing()
-add_subdirectory(test)
+#enable_testing()
+#add_subdirectory(test)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 

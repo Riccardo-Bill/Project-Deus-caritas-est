@@ -5,6 +5,11 @@ Game::Game(){
     auto& tmp = this->scenes_["mainMenu"]; //creates the empty mainMenu scene
 
     //TODO: set menu to be something
+    auto box = std::make_shared<Textbox>(Textbox(sf::Vector2f(75.f, 30.f), sf::Color(0, 0, 0),
+                                            sf::Color(255, 255, 255), 2.f, sf::Vector2f(250.f, 500.f),
+                                            "fonts/arial.ttf", sf::Color::White));
+
+    tmp->addBox(box);
 
 }
 

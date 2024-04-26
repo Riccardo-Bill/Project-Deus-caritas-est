@@ -32,8 +32,22 @@ public:
 
     void draw(sf::RenderWindow& window);
 
-    //TODO: add functions to add boxes and edit them easy (should be able to move the getter to protected)
+    //TODO: add functions to add boxes (done?) and edit them easy (should be able to move the getter to protected)
 
+    /**
+     * @brief Set a Textbox at index
+     * 
+     * @param index 
+     * @param box 
+     */
+    void setBox(int index, std::shared_ptr<Textbox> box);
+
+    /**
+     * @brief Add a Textbox at end of vector
+     * 
+     * @param box 
+     */
+    void addBox(std::shared_ptr<Textbox> box);
 };
 
 #endif //SCENE_HPP
