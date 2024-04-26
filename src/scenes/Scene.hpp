@@ -32,6 +32,8 @@ public:
 
     void draw(sf::RenderWindow& window);
 
+    //TODO: add functions to add boxes and edit them easy (should be able to move the getter to protected)
+
 };
 
 #endif //SCENE_HPP

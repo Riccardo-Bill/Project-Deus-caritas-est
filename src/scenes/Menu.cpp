@@ -8,8 +8,8 @@ Menu::Menu()
                                                                     sf::Color(255, 255, 255), 2.f, sf::Vector2f(250.f, 500.f),
                                                                     "fonts/arial.ttf", sf::Color::White));
 
-    tmp.get()->setText("Return");
-    tmp.get()->getBox();
+    tmp->setText("Return");
+    tmp->getBox();
 
     this->boxes_.push_back(tmp);
 }
