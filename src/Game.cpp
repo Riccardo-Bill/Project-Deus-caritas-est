@@ -4,15 +4,20 @@ Game::Game(){
 
     auto& tmp = this->scenes_["mainMenu"]; //creates the empty mainMenu scene
 
-    //TODO: set menu to be something
-    auto box = Textbox(sf::Vector2f(75.f, 30.f), sf::Color(0, 0, 0),
-                                            sf::Color(255, 255, 255), 2.f, sf::Vector2f(250.f, 500.f),
-                                            "fonts/arial.ttf", sf::Color::White);
+    currentScene_ = "mainMenu"; //sets current at mainMenu
 
-    box.setText("Return");
+    { //setting up mainMenu 
+        { //setting up mainMenu return button
+        auto box = Textbox(sf::Vector2f(75.f, 30.f), sf::Color(0, 0, 0),
+                            sf::Color(255, 255, 255), 2.f, sf::Vector2f(250.f, 500.f),
+                            "fonts/arial.ttf", sf::Color::White);
 
-    tmp.addBox(box);
+        	box.setText("Return");
+            box.setProprieties(false, true);
 
+            tmp.addBox(box);
+        }
+    }
 }
 
 Game::~Game() {}
@@ -27,4 +32,8 @@ Menu Game::getScene(std::string const& string) {
     }*/
 
     return this->scenes_[string];
+}
+
+void Game::input(sf::Event& event) {
+    this->scenes_[currentScene_].input(event);
 }

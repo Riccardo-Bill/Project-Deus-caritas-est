@@ -17,7 +17,10 @@ private:
 
     bool writable;
 
+    bool pressable;
+
     bool selected;
+    
 
 public:
 
@@ -46,6 +49,7 @@ public:
 
     void checkSelect(sf::Event& event);
 
+    void setProprieties(bool write, bool press);
 
     void draw(sf::RenderWindow& window);
 
