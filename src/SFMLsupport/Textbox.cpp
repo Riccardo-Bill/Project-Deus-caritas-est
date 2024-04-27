@@ -21,6 +21,7 @@ Textbox::Textbox(sf::Vector2f size, sf::Color fillColor, sf::Color outColor,
 
     this->selected = false;
     this->writable = false;
+    this->pressable = false;
 }
 
 Textbox::~Textbox() { }
@@ -57,34 +58,52 @@ void Textbox::addText(std::string const& text) {
 
 void Textbox::checkSelect(sf::Event& event)
 {
-    if (box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y) && this->selected == false)
+    switch (writable)
     {
-        this->selected = true;
-        this->addText("_");
-    }
-    else if (!(box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) && this->selected == true)
-    {
-        this->selected = false;
-        std::string now = this->text_.getString();
-        now.pop_back();
-        this->text_.setString(now);
+    case true:
+        if (box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y) && this->selected == false)
+        {
+            this->selected = true;
+            this->addText("_");
+        }
+        else if (!(box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) && this->selected == true)
+        {
+            this->selected = false;
+            std::string now = this->text_.getString();
+            now.pop_back();
+            this->text_.setString(now);
+        }
+        break;
+    case false:
+        if (box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y) && pressable){ //second condition should always be true (TODO: should remove after making sure of assumption)
+            std::cout << "Return pressed!" << std::endl;
+        }
+        break;
     }
 }
 
 void Textbox::input(sf::Event& event) {
-    switch (writable) //check if box is writable or not
+    switch (writable || pressable) //does nothing if it is not writable or pressable (the box is set as only output)
     {
     case true:
-        if (event.type == sf::Event::MouseButtonPressed){ //if mouse press check for selecting of this box
+        switch (event.type)
+        {
+        case sf::Event::MouseButtonPressed: //mouse pressed, check for selecting of this box
             this->checkSelect(event);
+            break;
+        case sf::Event::TextEntered: //text is entered, check if this box is selected and writable then add text to it
+            if (this->selected && writable) this->addText(sf::String(event.text.unicode));
+            break;
+        default:
+            break;
         }
-        else if (this->selected && event.type == sf::Event::TextEntered){ //if this box is selected AND text is entered add it to this box
-            this->addText(sf::String(event.text.unicode));
-        }
-        break;
-    default:
         break;
     }
+}
+
+void Textbox::setProprieties(bool write, bool press) {
+    this->writable = write;
+    this->pressable = press;
 }
 
 void Textbox::setTextColor(sf::Color fillColor) {

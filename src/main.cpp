@@ -19,9 +19,10 @@ int main(){
 
     /*Test*/
 
-    Game game = Game();
-
     /*End of test*/
+    
+    //creates game object (should only be one)
+    Game game = Game();
 
     sf::VideoMode::getDesktopMode();
 
@@ -46,10 +47,10 @@ int main(){
                 window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
             }
 
-            // passing events to mainMenu
-            /*if (event.type == sf::Event::TextEntered || event.type == sf::Event::MouseButtonPressed){
-                mainMenu.input(event);
-            }*/
+            // passing events to game
+            if (event.type == sf::Event::TextEntered || event.type == sf::Event::MouseButtonPressed){
+                game.input(event);
+            }
 /*
             if (event.type == sf::Event::TextEntered){
                 for (size_t i = 0; i < boxes.size(); i++)
