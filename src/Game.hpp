@@ -23,6 +23,8 @@ public:
     Game();
     ~Game();
 
+    void setCurrentScene(std::string const& string);
+
     Menu getScene(std::string const& string);
 
     /**
