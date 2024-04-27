@@ -27,6 +27,6 @@ Menu::~Menu()
 void Menu::input(sf::Event& event) {
     for (size_t i = 0; i < this->boxes_.size(); i++)
     {
-        this->boxes_[i]->input(event);
+        this->boxes_[i].input(event);
     }
 }

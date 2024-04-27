@@ -13,15 +13,15 @@ class Scene
 {
 protected:
     
-    std::vector<std::shared_ptr<Textbox>> boxes_;
+    std::vector<Textbox> boxes_;
 
 public:
 
     Scene();
     ~Scene();
 
-    std::vector<std::shared_ptr<Textbox>> getBoxes();
-    std::shared_ptr<Textbox> getBox(int index);
+    std::vector<Textbox> getBoxes();
+    Textbox getBox(int index);
 
     /**
      * @brief Should handle events of child classes
@@ -40,14 +40,14 @@ public:
      * @param index 
      * @param box 
      */
-    void setBox(int index, std::shared_ptr<Textbox> box);
+    void setBox(int index, Textbox box);
 
     /**
      * @brief Add a Textbox at end of vector
      * 
      * @param box 
      */
-    void addBox(std::shared_ptr<Textbox> box);
+    void addBox(Textbox box);
 };
 
 #endif //SCENE_HPP

@@ -75,7 +75,7 @@ int main(){
 
         window.clear(sf::Color(150, 150, 150));
 
-        game.getScene("mainMenu")->draw(window);
+        game.getScene("mainMenu").draw(window);
 
         window.display();
     }

@@ -14,14 +14,14 @@ class Game
 {
 private:
 
-std::unordered_map<std::string, std::shared_ptr<Menu>> scenes_;
+std::unordered_map<std::string, Menu> scenes_;
 
 public:
 
     Game();
     ~Game();
 
-    std::shared_ptr<Menu> getScene(std::string const& string);
+    Menu getScene(std::string const& string);
 
 };
 
