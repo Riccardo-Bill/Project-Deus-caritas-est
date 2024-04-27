@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "scenes/Menu.hpp"
+#include "Game.hpp"
 #include "SFMLsupport/Fontbox.hpp"
 
 Fontbox globFonts;
@@ -19,7 +19,7 @@ int main(){
 
     /*Test*/
 
-    Menu mainMenu = Menu();
+    Game game = Game();
 
     /*End of test*/
 
@@ -47,9 +47,9 @@ int main(){
             }
 
             // passing events to mainMenu
-            if (event.type == sf::Event::TextEntered || event.type == sf::Event::MouseButtonPressed){
+            /*if (event.type == sf::Event::TextEntered || event.type == sf::Event::MouseButtonPressed){
                 mainMenu.input(event);
-            }
+            }*/
 /*
             if (event.type == sf::Event::TextEntered){
                 for (size_t i = 0; i < boxes.size(); i++)
@@ -75,7 +75,7 @@ int main(){
 
         window.clear(sf::Color(150, 150, 150));
 
-        mainMenu.draw(window);
+        game.getScene("mainMenu").draw(window);
 
         window.display();
     }

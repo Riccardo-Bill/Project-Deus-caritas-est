@@ -3,15 +3,15 @@
 Menu::Menu()
     : Scene()
 {
-
+/*
     std::shared_ptr<Textbox> tmp = std::make_shared<Textbox>(Textbox(sf::Vector2f(75.f, 30.f), sf::Color(0, 0, 0),
                                                                     sf::Color(255, 255, 255), 2.f, sf::Vector2f(250.f, 500.f),
                                                                     "fonts/arial.ttf", sf::Color::White));
 
-    tmp.get()->setText("Return");
-    tmp.get()->getBox();
+    tmp->setText("Return");
+    tmp->getBox();
 
-    this->boxes_.push_back(tmp);
+    this->boxes_.push_back(tmp);*/
 }
 
 Menu::~Menu()
@@ -27,6 +27,6 @@ Menu::~Menu()
 void Menu::input(sf::Event& event) {
     for (size_t i = 0; i < this->boxes_.size(); i++)
     {
-        this->boxes_[i]->input(event);
+        this->boxes_[i].input(event);
     }
 }
