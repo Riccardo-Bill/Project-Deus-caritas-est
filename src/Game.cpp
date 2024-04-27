@@ -22,6 +22,11 @@ Game::Game(){
 
 Game::~Game() {}
 
+void Game::setCurrentScene(std::string const& string) {
+    currentScene_ = string;
+    //TODO set stuff for new scene (load from file?)
+}
+
 Menu Game::getScene(std::string const& string) {
 
     //TODO: fix
