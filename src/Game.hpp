@@ -32,7 +32,7 @@ public:
      * 
      * @param event 
      */
-    void input(sf::Event& event);
+    void input(sf::Event& event, sf::RenderWindow& window);
 
 };
 

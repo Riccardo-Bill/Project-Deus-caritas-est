@@ -13,7 +13,7 @@ Game::Game(){
                             "fonts/arial.ttf", sf::Color::White);
 
         	box.setText("Return");
-            box.setProprieties(false, true);
+            box.setProprieties(false, true, 1); //not writable, pressable, close window 
 
             tmp.addBox(box);
         }
@@ -39,6 +39,6 @@ Menu Game::getScene(std::string const& string) {
     return this->scenes_[string];
 }
 
-void Game::input(sf::Event& event) {
-    this->scenes_[currentScene_].input(event);
+void Game::input(sf::Event& event, sf::RenderWindow& window) {
+    this->scenes_[currentScene_].input(event, window);
 }

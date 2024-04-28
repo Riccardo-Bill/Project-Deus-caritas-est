@@ -28,7 +28,7 @@ public:
      * 
      * @param event sfml event from main loop 
      */
-    virtual void input(sf::Event& event) = 0;
+    virtual void input(sf::Event& event, sf::RenderWindow& window) = 0;
 
     void draw(sf::RenderWindow& window);
 

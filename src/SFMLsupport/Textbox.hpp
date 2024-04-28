@@ -21,6 +21,7 @@ private:
 
     bool selected;
     
+    int function;
 
 public:
 
@@ -44,16 +45,26 @@ public:
     void setFont(std::string const& font);
     void setTextColor(sf::Color fillColor, sf::Color outlineColor);
     void setTextColor(sf::Color fillColor);
+    void setFunctionButton(int fun);
 
     void addText(std::string const& text);
 
-    void checkSelect(sf::Event& event);
+    void checkSelect(sf::Event& event, sf::RenderWindow& window);
 
-    void setProprieties(bool write, bool press);
+    /**
+     * @brief Set the Proprieties object
+     * 
+     * @param write Is the box writable?
+     * @param press Is the box pressable?
+     * @param fun What does pressing the button does?
+     */
+    void setProprieties(bool write, bool press, int fun);
 
     void draw(sf::RenderWindow& window);
 
-    void input(sf::Event& event);
+    void input(sf::Event& event, sf::RenderWindow& window);
+
+    void button(sf::Event& event, sf::RenderWindow& window);
 
     /// @brief Update all values of box_
     void update(sf::Clock& clock);
