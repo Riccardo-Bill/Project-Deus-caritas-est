@@ -49,7 +49,7 @@ int main(){
 
             // passing events to game
             if (event.type == sf::Event::TextEntered || event.type == sf::Event::MouseButtonPressed){
-                game.input(event);
+                game.input(event, window);
             }
 /*
             if (event.type == sf::Event::TextEntered){

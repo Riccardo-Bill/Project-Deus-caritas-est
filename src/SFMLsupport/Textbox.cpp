@@ -22,6 +22,7 @@ Textbox::Textbox(sf::Vector2f size, sf::Color fillColor, sf::Color outColor,
     this->selected = false;
     this->writable = false;
     this->pressable = false;
+    this->function = 0;
 }
 
 Textbox::~Textbox() { }
@@ -56,11 +57,11 @@ void Textbox::addText(std::string const& text) {
     }
 }
 
-void Textbox::checkSelect(sf::Event& event)
+void Textbox::checkSelect(sf::Event& event, sf::RenderWindow& window)
 {
     switch (writable)
     {
-    case true:
+    case true: //it is a writable text box
         if (box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y) && this->selected == false)
         {
             this->selected = true;
@@ -74,46 +75,47 @@ void Textbox::checkSelect(sf::Event& event)
             this->text_.setString(now);
         }
         break;
-    case false:
+    case false: //it is a button text box
         if (box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y) && pressable){ //second condition should always be true (TODO: should remove after making sure of assumption)
-            std::cout << "Return pressed!" << std::endl;
+            this->button(event, window);
         }
         break;
     }
 }
 
-void Textbox::input(sf::Event& event) {
+void Textbox::input(sf::Event& event, sf::RenderWindow& window) {
     switch (writable || pressable) //does nothing if it is not writable or pressable (the box is set as only output)
     {
     case true:
         switch (event.type)
         {
         case sf::Event::MouseButtonPressed: //mouse pressed, check for selecting of this box
-            this->checkSelect(event);
+            this->checkSelect(event, window);
             break;
         case sf::Event::TextEntered: //text is entered, check if this box is selected and writable then add text to it
             if (this->selected && writable) this->addText(sf::String(event.text.unicode));
-            break;
-        default:
             break;
         }
         break;
     }
 }
 
-void Textbox::setProprieties(bool write, bool press) {
+void Textbox::setProprieties(bool write, bool press, int fun) {
     this->writable = write;
     this->pressable = press;
+    this->function = fun;
 }
 
 void Textbox::setTextColor(sf::Color fillColor) {
     this->text_.setFillColor(fillColor);
 }
 
+void Textbox::setFunctionButton(int fun) { function = fun; }
+
 void Textbox::draw(sf::RenderWindow& window) {
-    window.draw(this->box_);
-    this->text_.setPosition(box_.getPosition());
-    window.draw(this->text_);
+  window.draw(this->box_);
+  this->text_.setPosition(box_.getPosition());
+  window.draw(this->text_);
 }
 
 void Textbox::update(sf::Clock& clock) {
@@ -134,4 +136,20 @@ void Textbox::update(sf::Clock& clock) {
 
     //TODO: Implement resizing?
 
+}
+
+void Textbox::button(sf::Event& event, sf::RenderWindow& window) {
+    switch (function)
+    {
+    case 0: //Default functionalities
+        /* TODO: Add default functionalities */
+        break;
+    case 1: //Terminate process
+        window.close();
+        break;
+    //case 2: TODO: add other functionalities as needed
+    default: //Should never happen
+        std::cerr << "Out of bounds button function selected!" << std::endl;
+        break;
+    }
 }
