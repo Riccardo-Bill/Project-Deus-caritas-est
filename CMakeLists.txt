@@ -35,4 +35,8 @@ add_custom_command(TARGET ProjectDeuscaritasest PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    ${CMAKE_SOURCE_DIR}/src/fonts $<TARGET_FILE_DIR:ProjectDeuscaritasest>/fonts)
 
+add_custom_command(TARGET ProjectDeuscaritasest PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${CMAKE_SOURCE_DIR}/src/data $<TARGET_FILE_DIR:ProjectDeuscaritasest>/data)
+
 install(TARGETS ProjectDeuscaritasest)

@@ -6,18 +6,8 @@ Game::Game(){
 
     currentScene_ = "mainMenu"; //sets current at mainMenu
 
-    { //setting up mainMenu 
-        { //setting up mainMenu return button
-        auto box = Textbox(sf::Vector2f(75.f, 30.f), sf::Color(0, 0, 0),
-                            sf::Color(255, 255, 255), 2.f, sf::Vector2f(250.f, 500.f),
-                            "fonts/arial.ttf", sf::Color::White);
+    loadSceneFromFile("data/mainMenu.txt", "mainMenu"); //load pre-made main menu from file
 
-        	box.setText("Return");
-            box.setProprieties(false, true, 1); //not writable, pressable, close window 
-
-            tmp.addBox(box);
-        }
-    }
 }
 
 Game::~Game() {}
@@ -39,6 +29,46 @@ Menu Game::getScene(std::string const& string) {
     return this->scenes_[string];
 }
 
+void Game::loadSceneFromFile(std::string const& file, std::string const& scene) {
+
+    float size1, size2;
+
+    unsigned int fillColor, outColor;
+
+    float outThick;
+
+    float pos1, pos2;
+
+    std::string font;
+
+    unsigned int textColor;
+
+    std::string text;
+
+    bool writable;
+
+    bool pressable;
+
+    int function;
+
+    std::ifstream fin(file);
+
+    while (fin >> size1 >> size2 >> fillColor >> outColor >> outThick >> pos1 >> pos2 >> font >> textColor >> text >> writable >> pressable >> function)
+    {
+        
+        auto box = Textbox(sf::Vector2f(size1, size2), sf::Color(fillColor),
+                            sf::Color(outColor), outThick, sf::Vector2f(pos1, pos2),
+                            font, sf::Color(textColor));
+        std::replace(text.begin(), text.end(), '_', ' ');
+        box.setText(text);
+        box.setProprieties(writable, pressable, function);
+        this->scenes_[scene].addBox(box);
+    }
+    
+    fin.close();
+
+}
+
 void Game::input(sf::Event& event, sf::RenderWindow& window) {
-    this->scenes_[currentScene_].input(event, window);
+  this->scenes_[currentScene_].input(event, window);
 }
