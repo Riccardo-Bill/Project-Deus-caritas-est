@@ -23,6 +23,8 @@ private:
     
     int function;
 
+    std::string extra;
+
 public:
 
     Textbox(sf::Vector2f size = sf::Vector2f(450.f, 50.f), 
@@ -46,6 +48,8 @@ public:
     void setTextColor(sf::Color fillColor, sf::Color outlineColor);
     void setTextColor(sf::Color fillColor);
     void setFunctionButton(int fun);
+    void setExtra(std::string const& extra);
+    std::string const getExtra();
 
     void addText(std::string const& text);
 

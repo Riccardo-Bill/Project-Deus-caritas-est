@@ -51,9 +51,11 @@ void Game::loadSceneFromFile(std::string const& file, std::string const& scene) 
 
     int function;
 
+    std::string extra;
+
     std::ifstream fin(file);
 
-    while (fin >> size1 >> size2 >> fillColor >> outColor >> outThick >> pos1 >> pos2 >> font >> textColor >> text >> writable >> pressable >> function)
+    while (fin >> size1 >> size2 >> fillColor >> outColor >> outThick >> pos1 >> pos2 >> font >> textColor >> text >> writable >> pressable >> function >> extra)
     {
         
         auto box = Textbox(sf::Vector2f(size1, size2), sf::Color(fillColor),
@@ -62,6 +64,7 @@ void Game::loadSceneFromFile(std::string const& file, std::string const& scene) 
         std::replace(text.begin(), text.end(), '_', ' ');
         box.setText(text);
         box.setProprieties(writable, pressable, function);
+        box.setExtra(extra);
         this->scenes_[scene].addBox(box);
     }
     
