@@ -1,3 +1,6 @@
+// (c) 2024 Riccardo Billiato
+// This code is licensed under PolyForm Noncommercial License 1.0.0 (see LICENSE.md for details)
+
 #include "Game.hpp"
 
 Game::Game(){
@@ -74,4 +77,8 @@ void Game::loadSceneFromFile(std::string const& file, std::string const& scene) 
 
 void Game::input(sf::Event& event, sf::RenderWindow& window) {
   this->scenes_[currentScene_].input(event, window);
+}
+
+void Game::update(sf::Clock& clock, sf::RenderWindow& window) {
+    this->scenes_[currentScene_].update(clock, window);
 }

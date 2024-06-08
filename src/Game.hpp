@@ -1,3 +1,6 @@
+// (c) 2024 Riccardo Billiato
+// This code is licensed under PolyForm Noncommercial License 1.0.0 (see LICENSE.md for details)
+
 #ifndef GAME_HPP
 #define GAME_HPP
 
@@ -43,6 +46,15 @@ public:
      * @param event 
      */
     void input(sf::Event& event, sf::RenderWindow& window);
+
+
+    /**
+     * @brief Update current scene
+     * 
+     * @param clock 
+     * @param window 
+     */
+    void update(sf::Clock& clock, sf::RenderWindow& window);
 
 };
 

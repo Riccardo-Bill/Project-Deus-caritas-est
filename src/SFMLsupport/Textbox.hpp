@@ -1,3 +1,6 @@
+// (c) 2024 Riccardo Billiato
+// This code is licensed under PolyForm Noncommercial License 1.0.0 (see LICENSE.md for details)
+
 #ifndef TEXTBOX_HPP
 #define TEXTBOX_HPP
 
@@ -71,7 +74,7 @@ public:
     void button(sf::Event& event, sf::RenderWindow& window);
 
     /// @brief Update all values of box_
-    void update(sf::Clock& clock);
+    void update(sf::Clock& clock, sf::RenderWindow& window);
 };
 
 #endif //TEXTBOX_HPP

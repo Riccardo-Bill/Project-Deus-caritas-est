@@ -1,3 +1,6 @@
+// (c) 2024 Riccardo Billiato
+// This code is licensed under PolyForm Noncommercial License 1.0.0 (see LICENSE.md for details)
+
 #include "Scene.hpp"
 #include <iostream>
 
@@ -35,7 +38,6 @@ void Scene::draw(sf::RenderWindow& window) {
     {
         this->boxes_[i].draw(window);
     }
-    
 }
 
 void Scene::setBox(int index, Textbox box) {
@@ -53,3 +55,10 @@ void Scene::setBox(int index, Textbox box) {
 }
 
 void Scene::addBox(Textbox box) { this->boxes_.push_back(std::move(box)); }
+
+void Scene::update(sf::Clock& clock, sf::RenderWindow& window) {
+    for (size_t i = 0; i < this->boxes_.size(); i++)
+    {
+        this->boxes_[i].update(clock, window);
+    }
+}

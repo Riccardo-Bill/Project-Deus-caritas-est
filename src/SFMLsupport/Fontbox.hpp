@@ -1,3 +1,6 @@
+// (c) 2024 Riccardo Billiato
+// This code is licensed under PolyForm Noncommercial License 1.0.0 (see LICENSE.md for details)
+
 #ifndef FONTBOX_HPP
 #define FONTBOX_HPP
 

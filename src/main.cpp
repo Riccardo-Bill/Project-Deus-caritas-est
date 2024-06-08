@@ -1,3 +1,6 @@
+// (c) 2024 Riccardo Billiato
+// This code is licensed under PolyForm Noncommercial License 1.0.0 (see LICENSE.md for details)
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -11,8 +14,13 @@ int main(){
 
     printf("Testing at the start!\n");
 
+    //crate clock
+    sf::Clock clock;
+
     //create window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Loading", sf::Style::Close);
+    float windowWight = 800.f;
+    float windowHeight = 600.f;
+    sf::RenderWindow window(sf::VideoMode(windowWight, windowHeight), "Loading", sf::Style::Close);
 
     //center window
     window.setPosition(sf::Vector2i(0, 0));
@@ -26,7 +34,7 @@ int main(){
 
     sf::VideoMode::getDesktopMode();
 
-    window.create(sf::VideoMode(800, 600), "Project Deus caritas est", sf::Style::Default);
+    window.create(sf::VideoMode(windowWight, windowHeight), "Project Deus caritas est", sf::Style::Default);
 
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);
@@ -44,35 +52,30 @@ int main(){
 
             // resize the window if user resizes it own window
             if (event.type == sf::Event::Resized) {
-                window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
+                /* TODO: Resizing is very bugged
+                if (window.getSize().x < windowWight || window.getSize().y < windowHeight)
+                {
+                    window.setSize(sf::Vector2u(windowWight, windowHeight));
+                }
+                if (window.getSize().x * (windowHeight / windowWight) <= window.getSize().y)
+                {
+                    window.setSize(sf::Vector2u(window.getSize().x, window.getSize().x * (windowHeight / windowWight)));
+                }
+                else if (window.getSize().y * (windowWight / windowHeight) <= window.getSize().x)
+                {
+                    window.setSize(sf::Vector2u(window.getSize().y * (windowWight / windowHeight), window.getSize().y));
+                }
+                */
             }
 
             // passing events to game
             if (event.type == sf::Event::TextEntered || event.type == sf::Event::MouseButtonPressed){
                 game.input(event, window);
             }
-/*
-            if (event.type == sf::Event::TextEntered){
-                for (size_t i = 0; i < boxes.size(); i++)
-                {
-                    boxes[i]->input(event);
-                }
-            }
-
-            if (event.type == sf::Event::MouseButtonPressed)
-            {
-                if (event.mouseButton.button == sf::Mouse::Left)
-                {
-
-                    for (size_t i = 0; i < boxes.size(); i++)
-                    {
-                        boxes[i]->checkSelect(event);
-                    }
-                }
-            
-            }            
-*/
         }
+
+        //run update every cycle
+        game.update(clock, window);
 
         window.clear(sf::Color(150, 150, 150));
 

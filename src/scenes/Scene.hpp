@@ -1,3 +1,6 @@
+// (c) 2024 Riccardo Billiato
+// This code is licensed under PolyForm Noncommercial License 1.0.0 (see LICENSE.md for details)
+
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
@@ -48,6 +51,15 @@ public:
      * @param box 
      */
     void addBox(Textbox box);
+
+
+    /**
+     * @brief Update all textbox
+     * 
+     * @param clock 
+     * @param window 
+     */
+    void update(sf::Clock& clock, sf::RenderWindow& window);
 };
 
 #endif //SCENE_HPP

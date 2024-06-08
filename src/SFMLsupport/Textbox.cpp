@@ -1,3 +1,6 @@
+// (c) 2024 Riccardo Billiato
+// This code is licensed under PolyForm Noncommercial License 1.0.0 (see LICENSE.md for details)
+
 #include "Textbox.hpp"
 #include "Fontbox.hpp"
 #include <iostream>
@@ -69,15 +72,19 @@ void Textbox::addText(std::string const& text) {
 
 void Textbox::checkSelect(sf::Event& event, sf::RenderWindow& window)
 {
+    //gets relative mouse position and uses that
+    sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+    sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+
     switch (writable)
     {
     case true: //it is a writable text box
-        if (box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y) && this->selected == false)
+        if (box_.getGlobalBounds().contains(worldPos.x, worldPos.y) && this->selected == false)
         {
             this->selected = true;
             this->addText("_");
         }
-        else if (!(box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) && this->selected == true)
+        else if (!(box_.getGlobalBounds().contains(worldPos.x, worldPos.y)) && this->selected == true)
         {
             this->selected = false;
             std::string now = this->text_.getString();
@@ -86,7 +93,7 @@ void Textbox::checkSelect(sf::Event& event, sf::RenderWindow& window)
         }
         break;
     case false: //it is a button text box
-        if (box_.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y) && pressable){ //second condition should always be true (TODO: should remove after making sure of assumption)
+        if (box_.getGlobalBounds().contains(worldPos.x, worldPos.y) && pressable){ //second condition should always be true (TODO: should remove after making sure of assumption)
             this->button(event, window);
         }
         break;
@@ -128,7 +135,7 @@ void Textbox::draw(sf::RenderWindow& window) {
   window.draw(this->text_);
 }
 
-void Textbox::update(sf::Clock& clock) {
+void Textbox::update(sf::Clock& clock, sf::RenderWindow& window) {
     
     //TODO: Make text underscore blink
     /*if(this->selected){
@@ -144,7 +151,7 @@ void Textbox::update(sf::Clock& clock) {
         }
     } */
 
-    //TODO: Implement resizing?
+
 
 }
 
